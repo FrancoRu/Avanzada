@@ -30,32 +30,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <?php include('../includes/header.php'); ?>
 
-<div class="container">
-    <h1>Log in</h1>
+<div class="container-sesion">
+    <h1>Iniciar Sesion</h1>
     <form method="POST" action="login.php" id="loginForm">
         <div class="form-group">
             <label for="username">Usuario</label>
-            <input type="text" class="form-control" id="username" name="username" required>
+            <input type="text" class="form-control inputs" id="username" name="username" required>
         </div>
         <div class="form-group">
             <label for="password">Contraseña</label>
-            <input type="password" class="form-control" id="password" name="password" required>
+            <input type="password" class="form-control inputs" id="password" name="password" required>
         </div>
         <div class="form-group">
             <label for="captcha">Captcha</label>
             <div class="form-group d-flex align-items-center">
-                <input type="text" class="form-control" id="captcha" name="captcha" required>
-                <div class="ml-2">
-                    <img src="captcha.php" alt="CAPTCHA Image" class="captcha">
-                </div>
+    <input type="text" class="form-control small-input" id="captcha" name="captcha" required>
+            <div class="ml-2">
+                <img src="captcha.php" alt="CAPTCHA Image" class="captcha">
             </div>
+        </div>
+
         </div>
         <?php if (isset($loginError)) { ?>
             <div class="alert alert-danger">
                 <?php echo $loginError; ?>
             </div>
         <?php } ?>
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary">Iniciar sesion</button>
     </form>
     <p>No tienes cuenta aún? <a href="signup.php">Registrate</a></p>
 </div>

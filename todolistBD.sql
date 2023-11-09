@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-11-2023 a las 04:17:55
+-- Tiempo de generación: 09-11-2023 a las 04:02:10
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -32,14 +32,6 @@ CREATE TABLE `states` (
   `description` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `states`
---
-
-INSERT INTO `states` (`id`, `description`) VALUES
-(1, 'Completada'),
-(2, 'Incompleta');
-
 -- --------------------------------------------------------
 
 --
@@ -50,15 +42,9 @@ CREATE TABLE `tasks` (
   `id` int(11) NOT NULL,
   `name` varchar(25) NOT NULL,
   `state_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL
+  `user_id` int(11) NOT NULL,
+  `create_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `tasks`
---
-
-INSERT INTO `tasks` (`id`, `name`, `state_id`, `user_id`) VALUES
-(2, 'PASEAR A FRANCO', 2, 9);
 
 -- --------------------------------------------------------
 
@@ -71,13 +57,6 @@ CREATE TABLE `users` (
   `username` varchar(25) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `users`
---
-
-INSERT INTO `users` (`id`, `username`, `password`) VALUES
-(9, 'wasa', '$2y$10$moIyBj.c7h/TSeacDg5Kg.P4fYT/kKtdk0/eNr5AaYto67TzCcCvi');
 
 --
 -- Índices para tablas volcadas
@@ -94,7 +73,8 @@ ALTER TABLE `states`
 --
 ALTER TABLE `tasks`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_STATES` (`state_id`);
+  ADD KEY `FK_STATES` (`state_id`),
+  ADD KEY `FK_USER` (`user_id`);
 
 --
 -- Indices de la tabla `users`
@@ -116,13 +96,13 @@ ALTER TABLE `states`
 -- AUTO_INCREMENT de la tabla `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restricciones para tablas volcadas

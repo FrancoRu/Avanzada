@@ -19,23 +19,22 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="main.php" id="titulo">TO-DO <strong>LIST</strong></a>
 
-            <div id="gifs-perrones" style="display: none;">
-                <img src="https://media.giphy.com/media/10hoTR53wwnV2o/giphy.gif" alt="Conga conga" id="gif">
-                <img src=" https://media.giphy.com/media/3ohhwLD8tZNKkL4t9e/giphy.gif" alt="Conga conga" id="gif">
-                <img src="https://media.giphy.com/media/3ohzdN48ihh11IUeOc/giphy.gif" alt="Conga conga" id="gif">
-                <img src="https://media.giphy.com/media/l378rxSXhAg57Xeo0/giphy.gif" alt="Conga conga" id="gif">
-                <img src="https://media.giphy.com/media/Kkb1ByEZ4fwGI/giphy.gif" alt="Conga conga" id="gif">
-                <img src="https://media.giphy.com/media/O7VUh4Y1Whvr2/giphy.gif" alt="Conga conga" id="gif">
-                <img src="https://media.giphy.com/media/4JtXt9i56Wp6U/giphy.gif" alt="Conga conga" id="gif">
-                <img src="https://media.giphy.com/media/fojJlPjoRgRpe/giphy.gif" alt="Conga conga" id="gif">
-                <img src="https://media.giphy.com/media/3ohhwgCvTYLOs3UqM8/giphy.gif" alt="Conga conga" id="gif">
-                <img src="https://media.giphy.com/media/uaBUkZfAVFET6/giphy.gif" alt="Conga conga" id="gif">
-                <img src="https://media.giphy.com/media/9N5GI4UhuUTh6/giphy.gif" alt="Conga conga" id="gif">
-                <img src="https://media.giphy.com/media/weQG1zCbffpew/giphy.gif" alt="Conga conga" id="gif">
+            <div id="gifs-perrones" class="animated-div" style="display: none;">                
+                <img src="../includes/gifs/gif1.gif" alt="Conga conga" id="gif">
+                <img src="../includes/gifs/gif2.gif" alt="Conga conga" id="gif">
+                <img src="../includes/gifs/gif3.gif" alt="Conga conga" id="gif">
+                <img src="../includes/gifs/gif4.gif" alt="Conga conga" id="gif">
+                <img src="../includes/gifs/gif5.gif" alt="Conga conga" id="gif">
+                <img src="../includes/gifs/gif6.gif" alt="Conga conga" id="gif">
+                <img src="../includes/gifs/gif7.gif" alt="Conga conga" id="gif">
+                <img src="../includes/gifs/gif8.gif" alt="Conga conga" id="gif">
+                <img src="../includes/gifs/gif9.gif" alt="Conga conga" id="gif">
+                <img src="../includes/gifs/gif10.gif" alt="Conga conga" id="gif">
+                <img src="../includes/gifs/gif11.gif" alt="Conga conga" id="gif">
             </div>
 
             <!--<button class="amigues-boton" id="amiguitosGifs">Amiguitos :D</button>-->
-            <button class="btn-55 amiguesBoton" id="amiguitosGifs"><span>Amiguitos :D</span></button>
+            <button class="btn-55 amiguesBoton" id="amiguesBoton"><span>Amiguitos :D</span></button>
 
 
             <button id="navbarToggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

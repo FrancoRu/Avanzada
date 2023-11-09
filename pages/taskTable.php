@@ -81,7 +81,7 @@ function getTasks()
                     }).done(function() {
                         $.notify("Se elimino correctamente", "success")
                         row.remove();
-                    }).fail($.notify("No se pudo eliminar correctamente", "danger"))
+                    })
                 });
             });
         }

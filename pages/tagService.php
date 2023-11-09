@@ -54,11 +54,11 @@ class TagService
         $trow .= '<td>' . $registerValue . '</td>';
       }
       $trow .= '<td>
-  <div>
-      <button class="btn btn-success mx-1 modify_btn" data-element-id="' . $idTask . '"' . ($disabled ? 'disabled' : '') . '>Completar tarea</button>
-      <button class="btn btn-danger mx-1 delete_btn" data-element-id="' . $idTask . '">Eliminar tarea</button>
-  </div>
-  </td></tr>';
+      <div>
+          <button class="btn btn-success mx-1 modify_btn" data-element-id="' . $idTask . '"' . ($disabled ? 'disabled' : '') . '>Completar tarea</button>
+          <button class="btn btn-danger mx-1 delete_btn" data-element-id="' . $idTask . '">Eliminar tarea</button>
+      </div>
+      </td></tr>';
     }
     return $trow;
   }
@@ -108,7 +108,7 @@ class TagService
           <button class="btn btn-success mx-1 modify_btn" data-element-id="' . $idTask . '"' . ($disabled ? 'disabled' : '') . '>Completar tarea</button>
           <button class="btn btn-danger mx-1 delete_btn" data-element-id="' . $idTask . '">Eliminar tarea</button>
       </div>
-  </td></tr>';
+      </td></tr>';
     }
     $tbody .= '</tbody>';
     return $tbody;

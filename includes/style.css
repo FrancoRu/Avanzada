@@ -26,16 +26,31 @@ header {
 #titulo {
   font-size: 3.5rem;
 }
-#gif-perrones {
-  display: flex;
+#gifs-perrones {
+  opacity: 0;
+  transition: opacity 0.5s;
+  display: block;
+  background: linear-gradient(45deg, rgba(255, 0, 0, 0.7), rgba(255, 153, 0, 0.7), rgba(255, 204, 0, 0.7), rgba(51, 204, 51, 0.7), rgba(0, 153, 204, 0.7), rgba(153, 0, 204, 0.7), rgba(255, 0, 153, 0.7));
+  background-size: 200% 200%;
+  animation: rainbow 4s linear infinite;
+}
+
+@keyframes rainbow {
+  0% {
+      background-position: 0 100%;
+  }
+  100% {
+      background-position: 100% 0;
+  }
+}
+.animated-div {  
+transition: opacity 0.5s; 
 }
 #gif {
-  width: 30px;
-  height: 30px;
-  /*filter: grayscale(100%);
-  filter: brightness(0);*/
-  align-items: left;
-  text-align: left;
+width: 30px;
+height: 30px;
+align-items: left;
+text-align: left;
 }
 
 /*
@@ -63,6 +78,27 @@ header {
   height: 50px;
   background-color: #ffffff;
   border: none;
+}
+
+.small-input {
+  width: 150px;   
+  font-size: 14px;
+  padding: 5px;
+  
+}
+
+.inputs
+{
+  width: 300px;   
+  font-size: 14px;
+  padding: 5px;
+}
+
+.container-sesion
+{
+  margin-top: 2rem;
+  padding-left: 1rem;
+  margin-left: 50px;
 }
 
 #container_table {

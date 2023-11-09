@@ -4,7 +4,7 @@ class Auth
   private $mysqli;
   function __construct()
   {
-    $this->mysqli = new mysqli('127.0.0.1', 'root', '', 'todolist', 8080);
+    $this->mysqli = new mysqli('127.0.0.1', 'root', '', 'todolist', 3306);
     if ($this->mysqli->connect_errno != null) {
       echo "Error número " . $this->mysqli->connect_errno . " conectando a la base de datos.<br>Mensaje: " . $this->mysqli->connect_error;
       exit();

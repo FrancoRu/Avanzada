@@ -32,27 +32,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <?php include('../includes/header.php'); ?>
 
-<div class="container">
-    <h1>Sign UP</h1>
+<div class="container-sesion">
+    <h1>Registrarse</h1>
     <form method="POST" action="signup.php" id="signupForm">
         <div class="form-group">
             <label for="username">Usuario</label>
-            <input type="text" class="form-control" id="username" name="username" required>
+            <input type="text" class="form-control inputs" id="username" name="username" required>
         </div>
         <div class="form-group">
             <label for="password">Contraseña</label>
-            <input type="password" class="form-control" id="password" name="password" required>
+            <input type="password" class="form-control inputs" id="password" name="password" required>
         </div>
         <div class="form-group">
             <label for="confirm_password">Confirmar Contraseña</label>
-            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+            <input type="password" class="form-control inputs" id="confirm_password" name="confirm_password" required>
         </div>
         <div class="form-group">
         <label for="captcha">CAPTCHA</label>
-            <div class="input-group" id="signup-captcha">
-                <input type="text" class="form-control" id="captcha" name="captcha" required>
-                <div class="input-group-append">
-                 <img src="captcha.php" alt="CAPTCHA Image" class="input-group-text" style="background-color: #ffffff; border: none;">
+            <div class="form-group d-flex align-items-center">
+                <input type="text" class="form-control small-input" id="captcha" name="captcha" required>
+                <div class="ml-2">
+                    <img src="captcha.php" alt="CAPTCHA Image" class="captcha">
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php echo $signupError; ?>
             </div>
         <?php } ?>
-        <button type="submit" class="btn btn-primary">Sign up</button>
+        <button type="submit" class="btn btn-primary">Registarse</button>
     </form>
 </div>
 
