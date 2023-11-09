@@ -5,12 +5,11 @@ session_start();
 $Conn = new Auth();
 $tag = TagService::getInstance();
 
-$result = $Conn->lastTask();
-return $tag->getRow($result);
-if ($result !== false) {
-  return $tag->getRow($result);
+$result = $Conn->lastTask([$_SESSION['user_id']]);
+if ($result->num_rows > 0) {
   http_response_code(200);
-  echo json_encode(array('message' => 'Tarea creada exitosamente'));
+  $row = $tag->getRow($result);
+  echo $row;
   exit();
 } else {
   http_response_code(500); // Error interno del servidor

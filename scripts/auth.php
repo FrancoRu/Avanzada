@@ -68,7 +68,7 @@ class Auth
     error_log('Llego a agregar tareas');
     error_log(json_encode($args));
 
-    $query = "INSERT INTO tasks (name, state_id, user_id) VALUES (?, ?, ?)";
+    $query = "INSERT INTO tasks (name, state_id, user_id, create_date) VALUES (?, ?, ?, NOW())";
     return !$this->executeQuery($query, [...$args]);
   }
 
@@ -81,21 +81,21 @@ class Auth
       return false;
     }
   }
-  public function lastTask()
+  public function lastTask($args)
   {
-    $query = "SELECT T.id AS 'ID TAREA', T.name AS 'TAREA', S.description AS 'ESTADO' FROM tasks T INNER JOIN states S ON S.id = T.state_id WHERE T.id = ?";
-
-    $statement = $this->mysqli->prepare($query);
-
-    if ($statement) {
-      $lastTaskId = mysqli_insert_id($this->mysqli);
-      $statement->bind_param("i", $lastTaskId);
-
-      $statement->execute();
-
-      return $statement->get_result();
+    try {
+      $query = "SELECT T.id AS 'ID TAREA', T.name AS 'TAREA', S.description AS 'ESTADO'
+          FROM tasks T
+          INNER JOIN states S ON S.id = T.state_id
+          WHERE T.user_id = ?
+          ORDER BY T.create_date DESC
+          LIMIT 1";
+      return $this->executeQuery($query, [...$args]);
+    } catch (Exception $e) {
+      return false;
     }
   }
+
 
   public function deleteTask($args)
   {

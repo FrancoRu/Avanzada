@@ -39,16 +39,26 @@ class TagService
 
   public static function getRow($data)
   {
-    if ($data && $data->num_rows > 0) {
-      $trow = '<tr>';
-      while ($row = $data->fetch_assoc()) {
-        foreach ($row as $value) {
-          $trow .= '<td>' . $value . '</td>';
+    $count = 0;
+    $disabled = false;
+    $trow = '<tr>';
+    while ($row = $data->fetch_assoc()) {
+      foreach ($row as $registerValue) {
+        if ($count === 0) {
+          $idTask = $registerValue;
         }
+        if ($count === 2 && $registerValue === 'Completada') {
+          $disabled = true;
+        }
+        $count++;
+        $trow .= '<td>' . $registerValue . '</td>';
       }
-      $trow .= '</tr>';
-    } else {
-      $trow = '';
+      $trow .= '<td>
+  <div>
+      <button class="btn btn-success mx-1 modify_btn" data-element-id="' . $idTask . '"' . ($disabled ? 'disabled' : '') . '>Completar tarea</button>
+      <button class="btn btn-danger mx-1 delete_btn" data-element-id="' . $idTask . '">Eliminar tarea</button>
+  </div>
+  </td></tr>';
     }
     return $trow;
   }
@@ -77,7 +87,7 @@ class TagService
 
   private static function getBody($body)
   {
-    $tbody = '';
+    $tbody = '<tbody id=tbody>';
     foreach ($body as $arg) {
       $tbody .= '<tr>';
       $count = 0;
@@ -100,6 +110,7 @@ class TagService
       </div>
   </td></tr>';
     }
+    $tbody .= '</tbody>';
     return $tbody;
   }
 }

@@ -29,57 +29,69 @@ function getTasks()
 ?>
 <script>
     $(document).ready(function() {
-        const buttons = document.querySelectorAll('.modify_btn');
 
-        buttons.forEach(button => {
-            button.addEventListener('click', (event) => {
-                button.setAttribute('disabled', true);
-                const row = $(button).closest('tr');
-                event.preventDefault();
-                const task_id = button.getAttribute('data-element-id');
-                const user_id = '<?php echo $_SESSION['user_id']; ?>';
-
-                $.ajax({
-                    url: 'modify.php',
-                    method: 'POST',
-                    data: {
-                        task_id: task_id,
-                        user_id: user_id
-                    },
-                })
-                const thirdTd = row.find('td:eq(2)');
-                thirdTd.html('Completada');
-                $.notify("Se modifico correctamente", "success")
-            });
+        // Agregar un listener de cambio al formulario
+        $('#tbody').on('change', function() {
+            // Eliminar los event listeners existentes
+            $('.modify_btn, .delete_btn').off('click');
+            // Cargar los event listeners de nuevo
+            cargarEventListeners();
         });
+
+        cargarEventListeners();
+
+        function cargarEventListeners() {
+            const buttons_mod = document.querySelectorAll('.modify_btn');
+
+            buttons_mod.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    button.setAttribute('disabled', true);
+                    const row = $(button).closest('tr');
+                    event.preventDefault();
+                    const task_id = button.getAttribute('data-element-id');
+                    const user_id = '<?php echo $_SESSION['user_id']; ?>';
+
+                    $.ajax({
+                        url: 'modify.php',
+                        method: 'POST',
+                        data: {
+                            task_id: task_id,
+                            user_id: user_id
+                        },
+                    })
+                    const thirdTd = row.find('td:eq(2)');
+                    thirdTd.html('Completada');
+                    $.notify("Se modifico correctamente", "success")
+                });
+            });
+            const buttons_del = document.querySelectorAll('.delete_btn');
+            buttons_del.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const row = $(button).closest('tr');
+                    event.preventDefault();
+                    const task_id = button.getAttribute('data-element-id');
+                    const user_id = '<?php echo $_SESSION['user_id']; ?>';
+                    $.ajax({
+                        url: 'delete.php',
+                        method: 'POST',
+                        data: {
+                            task_id: task_id,
+                            user_id: user_id
+                        },
+                    }).done(function() {
+                        $.notify("Se elimino correctamente", "success")
+                        row.remove();
+                    }).fail($.notify("No se pudo eliminar correctamente", "danger"))
+                });
+            });
+        }
     });
 
-    $(document).ready(function() {
-        const buttons = document.querySelectorAll('.delete_btn');
-        buttons.forEach(button => {
-            button.addEventListener('click', (event) => {
-                const row = $(button).closest('tr');
-                event.preventDefault();
-                const task_id = button.getAttribute('data-element-id');
-                const user_id = '<?php echo $_SESSION['user_id']; ?>';
-                $.ajax({
-                    url: 'delete.php',
-                    method: 'POST',
-                    data: {
-                        task_id: task_id,
-                        user_id: user_id
-                    },
-                }).done(function() {
-                    $.notify("Se elimino correctamente", "success")
-                    row.remove();
-                }).fail($.notify("No se pudo eliminar correctamente", "danger"))
-            });
-        });
-    });
+    // $(document).ready(function() {});
 
     $(document).ready(function() {
         const form = $('#form-Tarea');
-
+        const table = $('#table').DataTable();
         form.on('submit', function(event) {
             event.preventDefault();
 
@@ -93,15 +105,11 @@ function getTasks()
                 },
             }).done(function(data) {
                 $.ajax({
-                    url: 'getAll.php',
+                    url: 'getLastTask.php',
                     method: 'POST',
                 }).done(function(datosActualizados) {
-                    // Actualiza la tabla con los datos actualizados
-                    $('#table').DataTable().clear().destroy();
-                    $('#table tbody').html(datosActualizados);
-                    $('#table').DataTable({});
-                }).fail(function(jqXHR, textStatus, errorThrown) {
-                    console.error('Error al obtener datos actualizados:', errorThrown);
+                    var nuevaFila = $(datosActualizados); // Convierte el HTML en un elemento jQuery
+                    table.row.add(nuevaFila).draw();
                 });
             }).fail(function(jqXHR, textStatus, errorThrown) {
                 console.error('Error al agregar tarea:', errorThrown);
